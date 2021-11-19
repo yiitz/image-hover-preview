@@ -43,13 +43,14 @@ export function activate(context: ExtensionContext) {
       }
       logger.log(`displayed image path is ${url}`);
 
-      const extraImageInfo = await (async () => {
-        if (showSize === false) {
-          return "";
-        }
-        const { width, height, size } = await fetchImgInfo(originalImage);
-        return `\r\n${size}(${width}x${height})`;
-      })();
+      const extraImageInfo = "";
+      // const extraImageInfo = await (async () => {
+      //   if (showSize === false) {
+      //     return "";
+      //   }
+      //   const { width, height, size } = await fetchImgInfo(originalImage);
+      //   return `\r\n${size}(${width}x${height})`;
+      // })();
 
       return new vscode.Hover(
         new vscode.MarkdownString(`
@@ -71,6 +72,7 @@ export function activate(context: ExtensionContext) {
     "javascriptreact",
     "html",
     "markdown",
+    "python",
     "vue",
   ].forEach((extension) => {
     context.subscriptions.push(

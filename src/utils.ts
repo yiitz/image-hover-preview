@@ -60,8 +60,7 @@ export function extraLocalPath(
   content: string,
   { ignore }: { ignore?: (string | RegExp)[] } = {}
 ) {
-  const linuxRegexp =
-    /(?:[A-Z]:|\\|(?:\.{1,2}[\/\\])+)[\w+\\\s_\(\)\/]+(?:\.\w+)*/;
+  const linuxRegexp = /((\.{0,1}\/|\.{0,1}\\|)*[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.png[^a-z0-9\s_@\-^!#$%&+={}\[\]]+/i;
   let file = content.match(linuxRegexp);
   if (file !== null) {
     const filepath = file[0];
@@ -93,7 +92,7 @@ export function extraPath(
   if (localPath !== null) {
     return {
       type: IMAGE_TYPE.Local,
-      path: path.resolve(localPath, dir),
+      path: path.resolve(dir, localPath),
     };
   }
   return null;
